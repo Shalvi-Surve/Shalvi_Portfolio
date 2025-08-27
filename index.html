@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalvi Surve | Portfolio</title>
+    <style>
+        :root {
+            --primary: #00b7eb;
+            --secondary: #8b5cf6;
+            --dark: #d1d5db;
+            --light: #0f172a;
+            --accent: #ec4899;
+            --gray: #6b7280;
+            --box-alt: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', 'Consolas', monospace;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.02) 2px,
+                rgba(255, 255, 255, 0.02) 3px
+            );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        header {
+            background: var(--box-alt);
+            color: var(--dark);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 0 10px rgba(0, 183, 235, 0.5);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent);
+            animation: glitch 2s linear infinite;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, text-shadow 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
+        }
+
+        .hero {
+            padding-top: 7rem;
+            padding-bottom: 5rem;
+            background: url('/api/placeholder/1200/800') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px dashed var(--primary);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 183, 235, 0.2), rgba(139, 92, 246, 0.2));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--dark);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.8);
+            padding: 2rem;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 20px rgba(0, 183, 235, 0.3);
+        }
+
+        .hero-image {
+            width: 150px;
+            height: 150px;
+            border: 4px solid var(--accent);
+            margin-bottom: 2rem;
+            object-fit: cover;
+            filter: drop-shadow(0 0 10px var(--accent));
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: flicker 3s infinite;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .typed-text {
+            color: var(--accent);
+            font-weight: bold;
+            position: relative;
+        }
+
+        .typed-text::after {
+            content: '|';
+            position: absolute;
+            right: -10px;
+            animation: blink 0.7s infinite;
+        }
+
+        .section {
+            padding: 5rem 0;
+            background: var(--light);
+            border: 1px solid var(--primary);
+            margin: 2rem auto;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: left;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-left: 1rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border: 5px solid var(--secondary);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .about-content .about-box {
+            background: var(--box-alt);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 10px rgba(0, 183, 235, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .about-content .about-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .skills-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 183, 235, 0.1), transparent 70%),
+                        url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h2v2H0zM2 2h2v2H2zM4 4h2v2H4zM6 6h2v2H6zM8 8h2v2H8zM10 10h2v2h-2zM12 12h2v2h-2zM14 14h2v2h-2zM16 16h2v2h-2zM18 18h2v2h-2z" fill="%2300b7eb" fill-opacity="0.05"/%3E%3C/svg%3E');
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .skill-category {
+            background-color: var(--box-alt);
+            border: 1px solid var(--primary);
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(0, 183, 235, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .skill-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px) scale(1.02) rotate(1deg);
+            box-shadow: 0 0 25px rgba(0, 183, 235, 0.6), 0 0 15px rgba(236, 72, 153, 0.4);
+            border-color: var(--accent);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: transparent;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--secondary);
+            font-size: 0.9rem;
+            color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transition: width 1s ease-in-out;
+        }
+
+        .skill-item.python::before { width: 90%; }
+        .skill-item.c::before { width: 80%; }
+        .skill-item.cpp::before { width: 85%; }
+        .skill-item.java::before { width: 75%; }
+        .skill-item.html::before { width: 90%; }
+        .skill-item.css::before { width: 85%; }
+        .skill-item.javascript::before { width: 80%; }
+        .skill-item.react::before { width: 70%; }
+        .skill-item.ml::before { width: 85%; }
+        .skill-item.transformers::before { width: 80%; }
+        .skill-item.dl::before { width: 75%; }
+        .skill-item.genai::before { width: 70%; }
+        .skill-item.prompt::before { width: 65%; }
+        .skill-item.sql::before { width: 90%; }
+        .skill-item.tableau::before { width: 85%; }
+        .skill-item.powerbi::before { width: 80%; }
+        .skill-item.pandas::before { width: 85%; }
+        .skill-item.numpy::before { width: 80%; }
+        .skill-item.streamlit::before { width: 75%; }
+        .skill-item.plotly::before { width: 70%; }
+        .skill-item.excel::before { width: 90%; }
+        .skill-item.mysql::before { width: 85%; }
+        .skill-item.figma::before { width: 90%; }
+        .skill-item.canva::before { width: 85%; }
+        .skill-item.illustrator::before { width: 70%; }
+        .skill-item.git::before { width: 85%; }
+        .skill-item.github::before { width: 80%; }
+        .skill-item.jupyter::before { width: 85%; }
+        .skill-item.gcloud::before { width: 70%; }
+        .skill-item.english::before { width: 95%; }
+        .skill-item.hindi::before { width: 90%; }
+        .skill-item.marathi::before { width: 90%; }
+        .skill-item.french::before { width: 50%; }
+        .skill-item.problem::before { width: 90%; }
+        .skill-item.critical::before { width: 85%; }
+        .skill-item.leadership::before { width: 80%; }
+        .skill-item.management::before { width: 80%; }
+        .skill-item.creativity::before { width: 90%; }
+        .skill-item.communication::before { width: 85%; }
+        .skill-item.team::before { width: 85%; }
+
+        .skill-item:hover::before {
+            width: 100%;
+        }
+
+        .skill-icon {
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--box-alt);
+            border: 1px solid var(--primary);
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 183, 235, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 183, 235, 0.4);
+        }
+
+        .project-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background-color: transparent;
+            color: var(--secondary);
+            padding: 0.2rem 0.8rem;
+            border: 1px solid var(--secondary);
+            font-size: 0.8rem;
+        }
+
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            padding-right: 2rem;
+            margin-left: 2rem;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-image {
+            padding-left: 2rem;
+            order: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            padding-left: 2rem;
+            margin-right: 2rem;
+            order: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-image {
+            padding-right: 2rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 4px solid var(--box-alt);
+            z-index: 2;
+            top: 10px;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .timeline-content {
+            background-color: var(--box-alt);
+            padding: 1.5rem;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 15px rgba(0, 183, 235, 0.2);
+            width: calc(50% - 4rem);
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-content h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .timeline-content .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-image {
+            width: calc(50% - 4rem);
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border: 2px solid var(--secondary);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+            background-color: var(--light);
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .certification-card {
+            background-color: var(--box-alt);
+            border: 1px solid var(--primary);
+            padding: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 183, 235, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 183, 235, 0.4);
+        }
+
+        .certification-card h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .certification-card .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .certification-thumbnail {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .download-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .download-icon:hover {
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .contact-details h4 {
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .contact-form {
+            background-color: var(--box-alt);
+            padding: 2rem;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 15px rgba(0, 183, 235, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 0.8rem 0.8rem 4rem;
+            border: 1px solid var(--primary);
+            font-size: 1rem;
+            background-color: var(--light);
+            color: var(--dark);
+            font-family: 'Courier New', 'Consolas', monospace;
+        }
+
+        .form-control::before {
+            content: '$ ';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            background-color: transparent;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .submit-btn::after {
+            content: 'Executing...';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn.executing::after {
+            opacity: 1;
+        }
+
+        footer {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 2px solid var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border: 1px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent);
+            color: var(--light);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--box-alt);
+            border: 1px solid var(--primary);
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 183, 235, 0.3);
+        }
+
+        .modal-content::before {
+            content: 'DETAILS';
+            position: absolute;
+            top: -1.5rem;
+            left: 1rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .modal-content h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .modal-content p {
+            min-height: 1.5em;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                padding-left: 60px;
+                padding-right: 20px;
+                margin-left: 0;
+                margin-right: 0;
+                width: calc(100% - 80px);
+                order: 1;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-image,
+            .timeline-item:nth-child(even) .timeline-image {
+                padding-left: 60px;
+                padding-right: 20px;
+                width: calc(100% - 80px);
+                order: 2;
+                margin-top: 1rem;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .skills-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Shalvi<span>Surve</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <img src="myPic.jpg" alt="Shalvi Surve" class="hero-image floating">
+            <h1>Shalvi Atul Surve</h1>
+            <p>I'm a <span class="typed-text">Computer Science Student</span> at VIT Vellore</p>
+            <p>Passionate about Data Science & Analytics, Artificial Intelligence, Web Development, UI/UX Design, and Problem Solving</p>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <img src="myPic.jpg" alt="About Me" class="about-image">
+                <div class="about-content">
+                    <h3 id="about-title">Hello, It's Shalvi!</h3>
+                    <div class="about-box">
+                        <p>I'm a driven 2nd-year B.Tech student in Computer Science and Engineering at VIT Vellore, fueled by a passion for blending technology with creativity.</p>
+                    </div>
+                    <div class="about-box">
+                        <p>With a robust foundation in Python, C, C++, Java, OOP, and DSA, I excel in Data Analytics & Data Science (SQL, PowerBI, Tableau, Machine Learning), Artificial Intelligence, Web Development (HTML, CSS, JavaScript, React.js), and UI/UX design.</p>
+                    </div>
+                    <div class="about-box">
+                        <p>Beyond tech, I find joy in singing, drawing, public speaking, and journaling. I'm dedicated to crafting impactful, user-centric solutions and thrive on collaborative innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3 class="skill-title">Programming Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item python"><span class="skill-icon">🐍</span> Python</span>
+                        <span class="skill-item c"><span class="skill-icon">🖥️</span> C</span>
+                        <span class="skill-item cpp"><span class="skill-icon">⚙️</span> C++</span>
+                        <span class="skill-item java"><span class="skill-icon">☕</span> Java</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-title">Web Development</h3>
+                    <div class="skill-list">
+                        <span class="skill-item html"><span class="skill-icon">🌐</span> HTML</span>
+                        <span class="skill-item css"><span class="skill-icon">🎨</span> CSS</span>
+                        <span class="skill-item javascript"><span class="skill-icon">📜</span> JavaScript</span>
+                        <span class="skill-item react"><span class="skill-icon">⚛️</span> React.js</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-title">AI & Machine Learning</h3>
+                    <div class="skill-list">
+                        <span class="skill-item ml"><span class="skill-icon">🤖</span> Machine Learning</span>
+                        <span class="skill-item transformers"><span class="skill-icon">🧠</span> Transformers</span>
+                        <span class="skill-item dl"><span class="skill-icon">🧬</span> Deep Learning</span>
+                        <span class="skill-item genai"><span class="skill-icon">✨</span> Generative AI</span>
+                        <span class="skill-item prompt"><span class="skill-icon">📝</span> Prompt Engineering</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-title">Data Analytics & Data Science</h3>
+                    <div class="skill-list">
+                        <span class="skill-item sql"><span class="skill-icon">🗄️</span> SQL</span>
+                        <span class="skill-item tableau"><span class="skill-icon">📊</span> Tableau</span>
+                        <span class="skill-item powerbi"><span class="skill-icon">📈</span> PowerBI</span>
+                        <span class="skill-item pandas"><span class="skill-icon">🐼</span> Pandas</span>
+                        <span class="skill-item numpy"><span class="skill-icon">🔢</span> NumPy</span>
+                        <span class="skill-item streamlit"><span class="skill-icon">📱</span> Streamlit</span>
+                        <span class="skill-item plotly"><span class="skill-icon">📉</span> Plotly</span>
+                        <span class="skill-item excel"><span class="skill-icon">📑</span> Excel</span>
+                        <span class="skill-item mysql"><span class="skill-icon">🗃️</span> MySQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-title">UI/UX Design</h3>
+                    <div class="skill-list">
+                        <span class="skill-item figma"><span class="skill-icon">🎨</span> Figma</span>
+                        <span class="skill-item canva"><span class="skill-icon">🖌️</span> Canva</span>
+                        <span class="skill-item illustrator"><span class="skill-icon">✏️</span> Adobe Illustrator</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-title">Tools & Platforms</h3>
+                    <div class="skill-list">
+                        <span class="skill-item git"><span class="skill-icon">🔄</span> Git</span>
+                        <span class="skill-item github"><span class="skill-icon">🐙</span> GitHub</span>
+                        <span class="skill-item jupyter"><span class="skill-icon">📓</span> Jupyter Notebook</span>
+                        <span class="skill-item gcloud"><span class="skill-icon">☁️</span> Google Cloud</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-title">Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item english"><span class="skill-icon">🇬🇧</span> English</span>
+                        <span class="skill-item hindi"><span class="skill-icon">🇮🇳</span> Hindi</span>
+                        <span class="skill-item marathi"><span class="skill-icon">🇮🇳</span> Marathi</span>
+                        <span class="skill-item french"><span class="skill-icon">🇫🇷</span> French (Elementary)</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-title">Soft Skills</h3>
+                    <div class="skill-list">
+                        <span class="skill-item problem"><span class="skill-icon">🧩</span> Problem Solving</span>
+                        <span class="skill-item critical"><span class="skill-icon">💡</span> Critical Thinking</span>
+                        <span class="skill-item leadership"><span class="skill-icon">👑</span> Leadership</span>
+                        <span class="skill-item management"><span class="skill-icon">📋</span> Management Skills</span>
+                        <span class="skill-item creativity"><span class="skill-icon">🎨</span> Creativity</span>
+                        <span class="skill-item communication"><span class="skill-icon">💬</span> Communication</span>
+                        <span class="skill-item team"><span class="skill-icon">🤝</span> Team Collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-title="Car Rental Feedback Analyzer" data-desc="Built for IBM's Gen AI Summer Course, this AI-powered Streamlit app analyzes car rental feedback using NLP (DistilBERT). Features sentiment analysis, topic classification, and interactive Plotly dashboards with exportable Excel reports." data-tags="Python,NLP,Streamlit,Transformers" data-link="https://github.com/Shalvi-Surve/car_rental_feedback_analyzer" data-live-link="https://carrentalfeedbackanalyzer-ibm-shalvisurve.streamlit.app/">
+                    <img src="Car_Rental_Feedback_Analyzer.jpg" alt="Car Rental Feedback Analyzer" class="project-image">
+                    <div class="project-content">
+                        <h3>Car Rental Feedback Analyzer</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Streamlit</span>
+                            <span class="project-tag">Transformers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-title="Time Series Analysis & Forecasting" data-desc="Developed during my Zidio Development internship, this project forecasted TCS stock prices using 5 years of Yahoo Finance data. Compared ARIMA, SARIMA, Prophet, and LSTM models, with SARIMA and LSTM excelling in accuracy (RMSE, MAE, MAPE)." data-tags="Python,Data Science,Deep Learning,Time Series" data-link="https://github.com/Shalvi-Surve/Time-series-analysis-and-forecasting">
+                    <img src="Stock_Price_Forecasting.jpg" alt="Time Series Analysis & Forecasting" class="project-image">
+                    <div class="project-content">
+                        <h3>Time Series Analysis & Forecasting</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Data Science</span>
+                            <span class="project-tag">Deep Learning</span>
+                            <span class="project-tag">Time Series</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-title="GeoSpatial VIT Club Logo Design" data-desc="Designed a visually striking logo for the GeoSpatial VIT Club, capturing the essence of geospatial technology with a modern, minimalist aesthetic. Collaborated with club leadership to align the design with the mission of advancing GIS innovation." data-tags="UI/UX Design,Figma,Canva" data-link="">
+                    <img src="GeoSpatial.jpg" alt="GeoSpatial VIT Club Logo Design" class="project-image">
+                    <div class="project-content">
+                        <h3>GeoSpatial VIT Club Logo Design</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">UI/UX Design</span>
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">Canva</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-title="Business Insights Dashboard" data-desc="Created for Tata by Forage's Data Visualization program, this project used Tableau to craft dashboards for strategic decision-making. Included data cleaning, chart selection, and a presentation for Tata's CEO and CMO." data-tags="Tableau,Data Visualization,Business Analytics" data-link="https://public.tableau.com/app/profile/shalvi.surve/viz/Tata-DataVisualisationTask-3/Sheet4">
+                    <img src="Business_Insights.jpg" alt="Business Insights Dashboard" class="project-image">
+                    <div class="project-content">
+                        <h3>Business Insights Dashboard</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Tableau</span>
+                            <span class="project-tag">Data Visualization</span>
+                            <span class="project-tag">Business Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-title="3-Day Data Analytics Challenge" data-desc="Earned for completing Novitech's 3-day challenge, applying data cleaning and visualization skills on a live dataset." data-tags="Data Analytics,Python,Data Visualization" data-link="">
+                    <img src="3-Day Data Analytics.jpg" alt="3-Day Data Analytics Challenge" class="project-image">
+                    <div class="project-content">
+                        <h3>3-Day Data Analytics Challenge</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Data Analytics</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Data Visualization</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-title="VIT Meal4All" data-desc="A website developed as a solo project for a class activity. This project is to be implemented by VIT Vellore soon." data-tags="HTML,CSS,JavaScript" data-link="https://github.com/Shalvi-Surve/VIT-Meal4All">
+                    <img src="VIT Meal4All logo.png" alt="VIT Meal4All" class="project-image">
+                    <div class="project-content">
+                        <h3>VIT Meal4All</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-title="Travel360" data-desc="A group project for HackXpertise: Designathon. This project was among the Top 15 Teams in the competition." data-tags="UI/UX Design,Figma" data-link="https://www.figma.com/design/ZZUAXO5GKW4LPViMfHlaLs/The-Bug-Appetit?node-id=15-284&t=iMKPDtCqLlFVbjwW-1">
+                    <img src="Travel360.jpg" alt="Travel360" class="project-image">
+                    <div class="project-content">
+                        <h3>Travel360</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">UI/UX Design</span>
+                            <span class="project-tag">Figma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-title="Mini Games" data-desc="A collection of mini games including Pac Man and Snake game. Developed as part of a group project for class activity." data-tags="C++,Game Development" data-link="https://github.com/suchetana23/Tap-Mania">
+                    <img src="MiniGames.jpg" alt="Mini Games Project" class="project-image">
+                    <div class="project-content">
+                        <h3>Mini Games</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">C++</span>
+                            <span class="project-tag">Game Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience & Education</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item" data-title="Data Analytics & Data Science Intern" data-desc="Analyzed large datasets using SQL and Python (Pandas, NumPy) to derive actionable insights. Developed interactive dashboards with Tableau and implemented machine learning models for predictive analytics at Zidio Development." data-date="May 2025 - June 2025" data-org="Zidio Development">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Data Analytics & Data Science Intern</h3>
+                        <div class="date">May 2025 - June 2025</div>
+                        <p>Zidio Development</p>
+                    </div>
+                    <div class="timeline-image">
+                        <img src="Zidio_Development_logo.jpg" alt="Zidio Development">
+                    </div>
+                </div>
+                <div class="timeline-item" data-title="Data Analytics Job Simulation" data-desc="Completed a virtual job simulation with Tata by Forage, performing data cleaning, exploratory data analysis, and visualization using Python and Tableau to support business decision-making." data-date="June 12, 2025" data-org="Tata by Forage">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Data Analytics Job Simulation</h3>
+                        <div class="date">June 12, 2025</div>
+                        <p>Tata by Forage</p>
+                    </div>
+                    <div class="timeline-image">
+                        <img src="Tata_Forage.png" alt="Tata by Forage">
+                    </div>
+                </div>
+                <div class="timeline-item" data-title="Web Developer Intern" data-desc="Developed responsive web applications like Tic-Tac-Toe and Weather App using HTML, CSS, and JavaScript during a remote internship at Prodigy Infotech. Enhanced UI/UX and integrated APIs." data-date="April 2025 - June 2025" data-org="Prodigy Infotech">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Web Developer Intern</h3>
+                        <div class="date">April 2025 - June 2025</div>
+                        <p>Prodigy Infotech</p>
+                    </div>
+                    <div class="timeline-image">
+                        <img src="ProdigyInfotech.jpg" alt="Prodigy Infotech">
+                    </div>
+                </div>
+                <div class="timeline-item" data-title="Senior Core Member @Design Team" data-desc="Led design initiatives for geospatial data visualization projects, utilizing Figma and collaborating with cross-functional teams to advance GIS technology applications." data-date="March 2025 - Present" data-org="GeoSpatial Club">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Senior Core Member @Design Team</h3>
+                        <div class="date">March 2025 - Present</div>
+                        <p>GeoSpatial Club</p>
+                    </div>
+                    <div class="timeline-image">
+                        <img src="GeoSpatial.jpg" alt="GeoSpatial Club">
+                    </div>
+                </div>
+                <div class="timeline-item" data-title="B.Tech. Computer Science and Engineering" data-desc="Pursuing a Bachelor's degree in Computer Science and Engineering, focusing on programming, data structures, algorithms, web development, and data analytics. Actively participating in tech clubs and hackathons." data-date="2023 - 2027" data-org="Vellore Institute of Technology">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-image">
+                        <img src="VIT Vellore.jpg" alt="VIT Vellore">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>B.Tech. Computer Science and Engineering</h3>
+                        <div class="date">2023 - 2027</div>
+                        <p>Vellore Institute of Technology</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="section">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="certification-card" data-title="GenAI Using IBM Watsonx" data-desc="Completed IBM's course on Generative AI, mastering AI-driven solutions using Watsonx for real-world applications." data-date="June 2025" data-org="IBM">
+                    <img src="IBM.png" alt="GenAI Using IBM Watsonx Certificate" class="certification-thumbnail">
+                    <h3>GenAI Using IBM Watsonx</h3>
+                    <div class="date">June 2025</div>
+                    <p>IBM</p>
+                    <a href="IBM_GenAI_Watsonx.jpg" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="IBM Course Completion Certificate" data-desc="Earned for completing IBM's comprehensive course on AI and data science, focusing on practical applications." data-date="July 2025" data-org="IBM">
+                    <img src="IBM.png" alt="IBM Course Completion Certificate" class="certification-thumbnail">
+                    <h3>IBM Course Completion</h3>
+                    <div class="date">July 2025</div>
+                    <p>IBM</p>
+                    <a href="IBM_Course_Completion_Certificate.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Zidio Internship Certificate" data-desc="Received for completing a data analytics and data science internship at Zidio Development, focusing on predictive modeling and visualization." data-date="June 2025" data-org="Zidio Development">
+                    <img src="Zidio_Development_logo.jpg" alt="Zidio Internship Certificate" class="certification-thumbnail">
+                    <h3>Zidio Internship Certificate</h3>
+                    <div class="date">June 2025</div>
+                    <p>Zidio Development</p>
+                    <a href="Zidio_Certificate.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Zidio Training Certificate" data-desc="Earned for completing training in data analytics and machine learning during my internship at Zidio Development." data-date="June 2025" data-org="Zidio Development">
+                    <img src="Zidio_Development_logo.jpg" alt="Zidio Training Certificate" class="certification-thumbnail">
+                    <h3>Zidio Training Certificate</h3>
+                    <div class="date">June 2025</div>
+                    <p>Zidio Development</p>
+                    <a href="Zidio_Training_Certificate.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="30-Day Data Analytics Masterclass" data-desc="Completed Novitech's 30-day masterclass, mastering Excel, MySQL, PowerBI, Tableau, and machine learning for real-world analytics." data-date="June 2025" data-org="Novitech R&D Pvt Ltd">
+                    <img src="Novitech.jpg" alt="30-Day Data Analytics Masterclass Certificate" class="certification-thumbnail">
+                    <h3>30-Day Data Analytics Masterclass</h3>
+                    <div class="date">June 2025</div>
+                    <p>Novitech R&D Pvt Ltd</p>
+                    <a href="Novitech_30Days_Masterclass.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="3-Day Data Analytics Challenge" data-desc="Earned for completing Novitech's 3-day challenge, applying data cleaning and visualization skills on a live dataset." data-date="June 2025" data-org="Novitech R&D Pvt Ltd">
+                    <img src="Novitech.jpg" alt="3-Day Data Analytics Challenge Certificate" class="certification-thumbnail">
+                    <h3>3-Day Data Analytics Challenge</h3>
+                    <div class="date">June 2025</div>
+                    <p>Novitech R&D Pvt Ltd</p>
+                    <a href="Novitech_3Day_Challenge.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Python Coder Regular" data-desc="Earned Kaggle's badge for consistent Python coding contributions, showcasing proficiency in data science and programming." data-date="June 2025" data-org="Kaggle">
+                    <img src="Kaggle.png" alt="Python Coder Regular Badge" class="certification-thumbnail">
+                    <h3>Python Coder Regular</h3>
+                    <div class="date">June 2025</div>
+                    <p>Kaggle</p>
+                    <a href="Kaggle_Python_Coder.png" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Data Creator Regular" data-desc="Received Kaggle's badge for regularly creating and sharing datasets, enhancing the data science community." data-date="June 2025" data-org="Kaggle">
+                    <img src="Kaggle.png" alt="Data Creator Regular Badge" class="certification-thumbnail">
+                    <h3>Data Creator Regular</h3>
+                    <div class="date">June 2025</div>
+                    <p>Kaggle</p>
+                    <a href="Kaggle_Dataset_Creator.png" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Code Uploader Regular" data-desc="Awarded Kaggle's badge for frequent code uploads, demonstrating expertise in sharing data science solutions." data-date="June 2025" data-org="Kaggle">
+                    <img src="Kaggle.png" alt="Code Uploader Regular Badge" class="certification-thumbnail">
+                    <h3>Code Uploader Regular</h3>
+                    <div class="date">June 2025</div>
+                    <p>Kaggle</p>
+                    <a href="Kaggle_Code_Uploader.png" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Vampire Badge" data-desc="Earned Kaggle's Vampire badge for consistent late-night contributions to data science projects and challenges." data-date="July 2025" data-org="Kaggle">
+                    <img src="Kaggle.png" alt="Vampire Badge" class="certification-thumbnail">
+                    <h3>Vampire Badge</h3>
+                    <div class="date">July 2025</div>
+                    <p>Kaggle</p>
+                    <a href="Kaggle_Vampire.png" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Data Visualisation Job Simulation" data-desc="Completed Tata by Forage's job simulation, creating Tableau dashboards to support strategic business decisions for Tata's leadership." data-date="June 12, 2025" data-org="Tata by Forage">
+                    <img src="Tata_Forage.png" alt="Data Visualisation Job Simulation Certificate" class="certification-thumbnail">
+                    <h3>Data Visualisation Job Simulation</h3>
+                    <div class="date">June 12, 2025</div>
+                    <p>Tata by Forage</p>
+                    <a href="Tata_Forage_Data_Visualisation_Job_Simulation.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Introduction to Generative AI" data-desc="Completed Google's course on Generative AI, gaining foundational knowledge in AI model architectures and their applications." data-date="May 2025" data-org="Google">
+                    <img src="Google_Cloud.jpg" alt="Introduction to Generative AI Badge" class="certification-thumbnail">
+                    <h3>Introduction to Generative AI</h3>
+                    <div class="date">May 2025</div>
+                    <p>Google</p>
+                    <a href="Google_Introduction_GenAI.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Prompt Design in Vertex AI" data-desc="Earned Google's skill badge for mastering prompt engineering techniques in Vertex AI for effective AI model interactions." data-date="May 2025" data-org="Google">
+                    <img src="Google_Cloud.jpg" alt="Prompt Design in Vertex AI Badge" class="certification-thumbnail">
+                    <h3>Prompt Design in Vertex AI</h3>
+                    <div class="date">May 2025</div>
+                    <p>Google</p>
+                    <a href="Google_PromptDesign_VertexAI.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Build Real-World AI Applications with Gemini & Imagen" data-desc="Achieved Google's skill badge for developing practical AI applications using Gemini and Imagen models." data-date="May 2025" data-org="Google">
+                    <img src="Google_Cloud.jpg" alt="Build Real-World AI Applications Badge" class="certification-thumbnail">
+                    <h3>Build Real-World AI Applications</h3>
+                    <div class="date">May 2025</div>
+                    <p>Google</p>
+                    <a href="Google_RealWorld_AI-Apps_Gemini_Imagen.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Prodigy Internship Certificate" data-desc="Earned for completing a web development internship at Prodigy Infotech, developing responsive applications like Tic-Tac-Toe and Weather App using HTML, CSS, and JavaScript." data-date="May 2025" data-org="Prodigy Infotech">
+                    <img src="ProdigyInfotech.jpg" alt="Prodigy Internship Certificate" class="certification-thumbnail">
+                    <h3>Prodigy Internship Certificate</h3>
+                    <div class="date">May 2025</div>
+                    <p>Prodigy Infotech</p>
+                    <a href="Prodigy_Internship_Certificate.pdf" class="download-icon" download>⬇</a>
+                </div>
+                <div class="certification-card" data-title="Prodigy Letter of Recommendation" data-desc="Received a letter of recommendation from Prodigy Infotech, recognizing my contributions to web development projects and strong problem-solving skills." data-date="May 2025" data-org="Prodigy Infotech">
+                    <img src="ProdigyInfotech.jpg" alt="Prodigy Letter of Recommendation" class="certification-thumbnail">
+                    <h3>Prodigy Letter of Recommendation</h3>
+                    <div class="date">May 2025</div>
+                    <p>Prodigy Infotech</p>
+                    <a href="Prodigy_LOR.pdf" class="download-icon" download>⬇</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h3><a href="mailto:shalviatul.surve2023@vitstudent.ac.in" style="color: var(--accent); text-decoration: none;">EMAIL</a></h3>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h3><a href="https://www.linkedin.com/in/shalvi-surve-0b572728a/" style="color: var(--accent); text-decoration: none;">LINKEDIN</a></h3>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h3><a href="https://github.com/Shalvi-Surve" style="color: var(--accent); text-decoration: none;">GITHUB</a></h3>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>VIT Vellore, Tamil Nadu, India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form" id="contactFormContainer">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Shalvi Surve. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/shalvi-surve-0b572728a/" class="social-icon">🔗</a>
+                <a href="https://github.com/Shalvi-Surve" class="social-icon">🐙</a>
+                <a href="mailto:shalviatul.surve2023@vitstudent.ac.in" class="social-icon">📧</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="descriptionModal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDate" class="date"></p>
+            <p id="modalOrg"></p>
+            <p id="modalDesc" class="type-text"></p>
+            <div id="modalTags" class="project-tags"></div>
+            <div class="modal-buttons">
+                <a id="modalLink" class="submit-btn">View Project</a>
+                <a id="modalLiveLink" class="submit-btn">Try Live Demo</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function typeText(element, text, speed = 50, callback = null) {
+            let index = 0;
+            element.textContent = '';
+            element.classList.add('typed-text');
+            
+            function type() {
+                if (index < text.length) {
+                    element.textContent = text.substring(0, index + 1);
+                    index++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typed-text');
+                    if (callback) callback();
+                }
+            }
+            type();
+        }
+
+        const typedTextSpan = document.querySelector(".typed-text");
+        const textArray = ["Computer Science Student", "AI-ML Enthusiast", "Data Analyst", "Web Developer", "UI/UX Designer", "Problem Solver"];
+        let textArrayIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeHero() {
+            const currentText = textArray[textArrayIndex];
+            
+            if (isDeleting) {
+                typedTextSpan.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextSpan.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(typeHero, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textArrayIndex = (textArrayIndex + 1) % textArray.length;
+                setTimeout(typeHero, 500);
+            } else {
+                setTimeout(typeHero, isDeleting ? 50 : 100);
+            }
+        }
+
+        setTimeout(typeHero, 1000);
+
+        const aboutTitle = document.getElementById('about-title');
+        const aboutBoxes = document.querySelectorAll('.about-box');
+        let aboutTyped = false;
+
+        function typeAbout() {
+            if (aboutTyped) return;
+            aboutTyped = true;
+            typeText(aboutTitle, "Hello, It's Shalvi!", 50, () => {
+                aboutBoxes.forEach((box, index) => {
+                    setTimeout(() => {
+                        box.classList.add('visible');
+                    }, index * 300);
+                });
+            });
+        }
+
+        const skillsSection = document.getElementById('skills');
+        const skillTitles = document.querySelectorAll('.skill-title');
+        const skillCategories = document.querySelectorAll('.skill-category');
+        let skillsTyped = false;
+
+        function typeSkills() {
+            if (skillsTyped) return;
+            skillsTyped = true;
+            skillTitles.forEach((title, index) => {
+                setTimeout(() => {
+                    typeText(title, title.textContent, 50, () => {
+                        skillCategories[index].classList.add('visible');
+                    });
+                }, index * 300);
+            });
+        }
+
+        const modal = document.getElementById('descriptionModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDate = document.getElementById('modalDate');
+        const modalOrg = document.getElementById('modalOrg');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalTags = document.getElementById('modalTags');
+        const modalLink = document.getElementById('modalLink');
+        const modalLiveLink = document.getElementById('modalLiveLink');
+        const closeModal = document.querySelector('.close-modal');
+
+        document.querySelectorAll('.project-card, .timeline-item, .certification-card').forEach(item => {
+            item.addEventListener('click', () => {
+                modalTitle.textContent = item.getAttribute('data-title');
+                modalDesc.setAttribute('data-text', item.getAttribute('data-desc'));
+                modalDesc.textContent = '';
+                
+                if (item.classList.contains('project-card')) {
+                    modalDate.textContent = '';
+                    modalOrg.textContent = '';
+                    modalTags.innerHTML = item.getAttribute('data-tags').split(',').map(tag => `<span class="project-tag">${tag}</span>`).join('');
+                    const link = item.getAttribute('data-link');
+                    const liveLink = item.getAttribute('data-live-link');
+                    if (link) {
+                        modalLink.href = link;
+                        modalLink.style.display = 'inline-block';
+                    } else {
+                        modalLink.style.display = 'none';
+                    }
+                    if (liveLink) {
+                        modalLiveLink.href = liveLink;
+                        modalLiveLink.style.display = 'inline-block';
+                    } else {
+                        modalLiveLink.style.display = 'none';
+                    }
+                } else {
+                    modalDate.textContent = item.getAttribute('data-date');
+                    modalOrg.textContent = item.getAttribute('data-org');
+                    modalTags.innerHTML = '';
+                    modalLink.style.display = 'none';
+                    modalLiveLink.style.display = 'none';
+                }
+
+                modal.style.display = 'flex';
+                typeText(modalDesc, modalDesc.getAttribute('data-text'), 50);
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.classList.add('executing');
+            setTimeout(() => {
+                submitBtn.classList.remove('executing');
+                alert('Message sent! (Demo mode)');
+            }, 1500);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const section = document.getElementById(targetId);
+                if (section) {
+                    window.scrollTo({
+                        top: section.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const aboutSection = document.getElementById('about');
+            const rectAbout = aboutSection.getBoundingClientRect();
+            if (rectAbout.top <= window.innerHeight * 0.75) {
+                typeAbout();
+            }
+
+            const skillsRect = skillsSection.getBoundingClientRect();
+            if (skillsRect.top <= window.innerHeight * 0.75) {
+                typeSkills();
+            }
+        });
+    </script>
+</body>
+</html>
